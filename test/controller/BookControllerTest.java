@@ -46,7 +46,7 @@ public class BookControllerTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        b = new Book(1,"GodFather", "Mario P.");
+        b = new Book(1,"GodFather II", "Mario P.");
     }	
 	
 	
