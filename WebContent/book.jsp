@@ -20,7 +20,7 @@
 <div class="container">
  <div class="panel panel-default">
  
-<div class="panel-heading">List Books</div>
+<div class="panel-heading">List of Books</div>
 
 
 <div class="panel-body">
