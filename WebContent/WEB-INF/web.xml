@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>HelloJSP</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+<security-constraint>
+  <web-resource-collection>
+    <web-resource-name>
+      Entire Application
+    </web-resource-name>
+    <url-pattern>/Book/*</url-pattern>
+  </web-resource-collection>
+  <auth-constraint>
+      <role-name>gamer</role-name>
+  </auth-constraint>
+</security-constraint>
+<!-- Define the Login Configuration for this Application -->
+<login-config>
+  <auth-method>BASIC</auth-method>
+  <realm-name>Invitation only</realm-name>
+</login-config>  
+</web-app>
