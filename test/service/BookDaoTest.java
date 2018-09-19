@@ -15,10 +15,15 @@ import service.BookDao;
 public class BookDaoTest {
 
 	BookDao b;
-	BookConcrete book = new BookConcrete(1, "Silence of Lambs", "Thomas Harris");
+	BookConcrete book = new BookConcrete();
+	
+	
 	
 	@Before
 	public void setUp() throws Exception {
+		book.setBookId(1);
+		book.setBookName("Silence of Lambs");
+		book.setAuthorName("Thomas Harris");
 		b = (BookDao) BookImplFactory.createBookImplementation(BookImplStyle.DAO);
 		b.addBookToList(book);
 	}

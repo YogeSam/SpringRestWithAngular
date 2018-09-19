@@ -11,6 +11,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 @NamedQueries(  
 		{  
@@ -25,25 +27,28 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "book")
 public class BookConcrete implements Serializable{
-
-	public BookConcrete(int bookId, String bookName, String authorName) {
-		this.bookId = bookId;
-		this.bookName = bookName;
-		this.authorName = authorName;
+	
+	public BookConcrete() {
+		// TODO Auto-generated constructor stub
 	}
 	
-	public BookConcrete(){
-		
+	public BookConcrete(int bookid, String bookname, String authorname){
+		this.bookId = bookid;
+		this.bookName = bookname;
+		this.authorName = authorname;
 	}
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "Id")	
+	@JsonProperty("bookId")	
 	private int bookId;
 	
+	@JsonProperty("bookName")		
 	@Column(name = "bookName")
 	private String bookName;
 	
+	@JsonProperty("authorName")	
 	@Column(name = "authorName")
 	private String authorName;
 	

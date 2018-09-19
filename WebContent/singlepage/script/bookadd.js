@@ -13,7 +13,7 @@
         	  };
           self.addBook = function() {
         	  if(self.book.bookName !== "" && self.book.authorName !== "" ){
-        		  BookServiceOp.addBook(self.book.bookName, self.book.authorName).then(function(response) {
+        		  BookServiceOp.addBook(self.book).then(function(response) {
         			  bootbox.alert("Success!!!");
         			  self.parentscope.resetUrl();
         			  self.parentscope.loadBooks();

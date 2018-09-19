@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import factory.BookImplFactory;
@@ -40,13 +42,25 @@ public class RestBookController {
 		return list;
 	}
 	
-
 	@RequestMapping(value = "/Book/{bookname}/{author}", method = RequestMethod.POST)
-	public void addBook(@PathVariable("bookname") String bookname, @PathVariable("author") String author){
+	public void addBook(@PathVariable("bookname") String bookName, @PathVariable("author") String authorName){
 		//int d = 6 / 0;
 		IBookList b = getBookListService();
-		b.addBookToList(new BookConcrete(0,bookname, author));
+		BookConcrete book = new BookConcrete();
+		book.setBookId(0);
+		book.setBookName(bookName);
+		book.setAuthorName(authorName);
+		b.addBookToList(book);
 	}	
+		
+
+	//@RequestMapping(value = "/Book", method = RequestMethod.POST)
+	@PostMapping(path = "/Book")
+	public void addBook(@RequestBody BookConcrete book){
+		//int d = 6 / 0;
+		IBookList b = getBookListService();
+		b.addBookToList(book);
+	}		
 	
 	@RequestMapping(value = "/Book/{bookid}/{bookname}/{author}", method = RequestMethod.PUT)
 	public void updateBook(@PathVariable("bookid") int bookid, @PathVariable("bookname") String bookname, @PathVariable("author") String author){

@@ -35,10 +35,10 @@ public class HibernateTest {
 	public void testBookInHibernate() {
 		//Add
 		session.beginTransaction();
-		BookConcrete b = new BookConcrete(2,"GodFather","Mario P.");
-		//b.setBookId(2);
-		//b.setBookName("GodFather");
-		//b.setAuthorName("Mario P.");
+		BookConcrete b = new BookConcrete();
+		b.setBookId(2);
+		b.setBookName("GodFather");
+		b.setAuthorName("Mario P.");
         session.save(b);
         session.getTransaction().commit();
         
