@@ -12,8 +12,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import rest.application.ApplicationConfiguration;
+
 import rest.application.ApplicationInitializer;
+import rest.application.security.WebConfig;
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
@@ -25,7 +26,7 @@ import org.hamcrest.core.AnyOf;
 //Spring Rest Annotations
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = {ApplicationConfiguration.class, ApplicationInitializer.class})
+@ContextConfiguration(classes = {WebConfig.class, ApplicationInitializer.class})
 
 public class RestBookControllerTest {
 
@@ -43,11 +44,11 @@ public class RestBookControllerTest {
 	
 	@Test
 	public void testBookListForId() throws Exception {
-		 mockMvc.perform(get("/Book/230"))
+		 mockMvc.perform(get("/Book/270"))
 		 .andExpect(status().isOk())
 		 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 		 .andExpect(jsonPath("$", hasSize(1)))
-		 .andExpect(jsonPath("$[0].bookName",anyOf(containsString("Father"))))
+		 .andExpect(jsonPath("$[0].bookName",anyOf(containsString("GodFather"))))
 		 .andExpect(jsonPath("$[0].authorName", is("Mario P")))
 		 ;
 	}
@@ -67,15 +68,20 @@ public class RestBookControllerTest {
 		 mockMvc.perform(post("/Book/XXX1/YYYY1"))
 		 .andExpect(status().isOk())
 		 ;
+		 
+		 mockMvc.perform(post("/Book").contentType(MediaType.APPLICATION_JSON).content("{\"bookId\":\"0\",\"bookName\":\"Eye of Tiger\",\"authorName\":\"Surma Bhopali\"}"))
+		 .andExpect(status().isOk())
+		 ;
+		 
 	}
 	
 	@Test
 	public void testBookUpdate() throws Exception {
-		 mockMvc.perform(put("/Book/230/1GodFather/XXX"))
+		 mockMvc.perform(put("/Book/270/1GodFather/XXX"))
 		 .andExpect(status().isOk())
 		 ;
 
-		 mockMvc.perform(get("/Book/230"))
+		 mockMvc.perform(get("/Book/270"))
 		 .andExpect(status().isOk())
 		 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 		 .andExpect(jsonPath("$", hasSize(1)))
@@ -83,7 +89,7 @@ public class RestBookControllerTest {
 		 .andExpect(jsonPath("$[0].authorName", is("XXX")))
 		 ;		 
 		 
-		 mockMvc.perform(put("/Book/230/GodFather/Mario P"))
+		 mockMvc.perform(put("/Book/270/GodFather/Mario P"))
 		 .andExpect(status().isOk())
 		 ;
 		 

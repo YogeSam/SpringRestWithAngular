@@ -66,9 +66,13 @@ public class BookDao implements IBookList{
 	}
 
 	@Override
-	public BookConcrete updateBook(int id, String bookName, String authorName) {
+	public BookConcrete updateBook(int bookId, String bookName, String authorName) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		BookConcrete b = new BookConcrete(id, bookName, authorName);
+		BookConcrete b = new BookConcrete();
+		b.setBookId(bookId);
+		b.setAuthorName(authorName);
+		b.setBookName(bookName);
+		
 		session.beginTransaction();
 		session.update(b);
         session.getTransaction().commit();

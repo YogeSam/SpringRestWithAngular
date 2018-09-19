@@ -80,9 +80,6 @@ public class BookController extends HttpServlet {
 		IBookList b = (IBookList)session.getAttribute("Book");
 		if(b == null){
 			b = BookImplFactory.createBookImplementation(BookImplStyle.DAO);
-			b.addBookToList(new BookConcrete(1,"GodFather", "Mario P."));
-			b.addBookToList(new BookConcrete(2,"Principles", "Ray dalio."));
-			b.addBookToList(new BookConcrete(3,"Black Swan", "Naseem Taleb"));
 		}
 		session.setAttribute("Book",b);
 	}
@@ -104,7 +101,11 @@ public class BookController extends HttpServlet {
 		String authorName = (String)request.getParameter("authorname");
 	
 		if(bAdd){
-			b.addBookToList(new BookConcrete(bookId,bookName,authorName));
+			BookConcrete book = new BookConcrete();
+			book.setBookId(bookId);
+			book.setAuthorName(authorName);
+			book.setBookName(bookName);
+			b.addBookToList(book);
 		}else{
 			b.updateBook(bookId,bookName,authorName);
 		}

@@ -14,6 +14,11 @@ BookService.factory('BookServiceOp', ['$http', function ($http) {
     BookServiceOp.addBook = function (bookname, authorname) {
         return $http.post(urlBase + '/Book/' + bookname + "/" + authorname);
     };
+
+    BookServiceOp.addBook = function (book) {
+        return $http.post(urlBase + '/Book', book);
+    };
+
     
     BookServiceOp.updateBook = function (bookid, bookname, authorname) {
         return $http.put(urlBase + '/Book/' + bookid + "/" + bookname + "/" + authorname);

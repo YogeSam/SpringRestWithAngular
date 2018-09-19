@@ -18,8 +18,8 @@ public class BookTest {
 	public void setUp() throws Exception {
 		b = (Book) BookImplFactory.createBookImplementation(BookImplStyle.ARRAY);
 		b.addBookToList(1,"GodFather", "Mario P.");
-		b.addBookToList(new BookConcrete(2,"Principles", "Ray dalio."));
-		b.addBookToList(new BookConcrete(3,"Black Swan", "Naseem Taleb"));
+		b.addBookToList(2,"Principles", "Ray dalio.");
+		b.addBookToList(3,"Black Swan", "Naseem Taleb");
 	}
 
 	@After

@@ -10,12 +10,20 @@ public class Book implements IBookList{
 	ArrayList<BookConcrete> bookList = new ArrayList<BookConcrete>();
 	
 	public Book(int bookId, String bookName, String authorName) {
-		BookConcrete b = new BookConcrete(bookId, bookName, authorName);
+		BookConcrete b = new BookConcrete();
+		b.setBookId(bookId);
+		b.setAuthorName(authorName);
+		b.setBookName(bookName);
+		
 		bookList.add(b);
 	}
 	
 	public void addBookToList(int bookId, String bookName, String authorName) {
-		BookConcrete b = new BookConcrete(bookId,bookName,authorName);
+		BookConcrete b = new BookConcrete();
+		b.setBookId(bookId);
+		b.setAuthorName(authorName);
+		b.setBookName(bookName);
+		
 		bookList.add(b);
 	}
 	
