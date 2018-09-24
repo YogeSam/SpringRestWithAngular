@@ -13,13 +13,16 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 @NamedQueries(  
 		{  
 	        @NamedQuery(  
 	        name = "findBookByName",  
-	        query = "from BookConcrete b where b.bookName = :bookName"  
-	        )  
+	        query = "from BookConcrete b where b.bookName like :bookName"  
+	        ),
+	        @NamedQuery(  
+	        name = "findBookByAuthor",  
+	        query = "from BookConcrete b where b.authorName like :authorname"
+	        )
 	    }  
 )  
 

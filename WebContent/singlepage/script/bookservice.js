@@ -29,6 +29,9 @@ BookService.factory('BookServiceOp', ['$http', function ($http) {
         return $http.delete(urlBase + '/Book/' + bookid);
     };
 
+    BookServiceOp.searchBooks = function (bookname) {
+    	return $http.get(urlBase + '/Book/Search/BookName/' + bookname);
+    };
     
     return BookServiceOp;
 

@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import data.HibernateUtil;
 import model.BookConcrete;
 
+
 public class BookDao implements IBookList{
 	
 
@@ -31,7 +32,7 @@ public class BookDao implements IBookList{
 		ArrayList<BookConcrete> list = new ArrayList<BookConcrete>();
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Query query=session.getNamedQuery("findBookByName");      
-		query.setParameter("bookName",bookname);
+		query.setParameter("bookName","%" + bookname + "%" );
 		list= new ArrayList<BookConcrete>(query.list());
 		HibernateUtil.shutdown();
 		return list;
@@ -41,8 +42,9 @@ public class BookDao implements IBookList{
 	public ArrayList<BookConcrete> findBookByAuthor(String authorName) {
 		ArrayList<BookConcrete> list = new ArrayList<BookConcrete>();
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		Query query=session.createQuery("from BookConcrete where authorname = :authorname");    
-		query.setParameter("authorname",authorName);
+		//Query query=session.createQuery("from BookConcrete where authorname like :authorname");
+		Query query=session.getNamedQuery("findBookByAuthor");   
+		query.setParameter("authorname","%" + authorName + "%" );
 	    list= new ArrayList<BookConcrete>(query.list());
 		HibernateUtil.shutdown();
 		return list;

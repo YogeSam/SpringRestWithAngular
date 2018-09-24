@@ -15,7 +15,11 @@
    
 <div class="panel-heading">List Books</div>
 <div class="panel-body" >
-
+ <div class="search-container">
+      <input ng-focus="ctrl1.selectSearch($event)"   ng-change="ctrl1.searchBook()" ng-model="ctrl1.searchbookname" type="text" placeholder="Search Book or Author.." id="search" name="search">
+      <a href="" ng-click="ctrl1.searchBook()" ><span class="glyphicon glyphicon-search" data-toggle="tooltip" title="Search"></span></a>
+      
+  </div>
 <div class="slide-animate-container">
     <div class="slide-animate" ng-include="ctrl1.url"></div>
 </div>
