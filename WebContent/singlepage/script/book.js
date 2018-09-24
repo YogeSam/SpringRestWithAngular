@@ -6,7 +6,26 @@
  	.controller('BookController', function(BookServiceOp) {
           var self = this;
           self.url = "";
+          self.searchbookname = "";
           self.books= []; 
+          
+          
+          self.selectSearch = function($event){
+        	  $event.target.select();
+          }
+          
+          self.searchBook = function(){
+        	  if(self.searchbookname !== "" && self.searchbookname.length % 3 === 0){
+        		  BookServiceOp.searchBooks(self.searchbookname).then(function(response) {
+        			  self.books = response.data;
+                  }, function(error){
+                	  bootbox.alert(error.statusText);
+                  });
+        	  }else if(self.searchbookname.length === 0){
+        		  self.loadBooks();
+        	  }        	  
+        	  
+          }
           
           self.loadBooks = function(){
         	  BookServiceOp.getBooks().then(function(response) {

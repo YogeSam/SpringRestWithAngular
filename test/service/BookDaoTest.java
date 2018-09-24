@@ -46,12 +46,14 @@ public class BookDaoTest {
 	@Test
 	public void testFindBookByName() {
 		assertTrue(b.findBookByName(book.getBookName()).size()==1);
+		assertTrue(b.findBookByName("Silence").size()==1);
 		assertTrue(b.findBookByName("Wrong Name").size()==0);
 	}
 
 	@Test
 	public void testFindBookByAuthor() {
 		assertTrue(b.findBookByAuthor(book.getAuthorName()).size()==1);
+		assertTrue(b.findBookByAuthor("Thomas").size()==1);
 		assertTrue(b.findBookByAuthor("Wrong Name").size()==0);
 	}
 

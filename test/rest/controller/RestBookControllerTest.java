@@ -44,7 +44,7 @@ public class RestBookControllerTest {
 	
 	@Test
 	public void testBookListForId() throws Exception {
-		 mockMvc.perform(get("/rest/Book/270"))
+		 mockMvc.perform(get("/rest/Book/276"))
 		 .andExpect(status().isOk())
 		 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 		 .andExpect(jsonPath("$", hasSize(1)))
@@ -77,11 +77,11 @@ public class RestBookControllerTest {
 	
 	@Test
 	public void testBookUpdate() throws Exception {
-		 mockMvc.perform(put("/rest/Book/270/1GodFather/XXX"))
+		 mockMvc.perform(put("/rest/Book/276/1GodFather/XXX"))
 		 .andExpect(status().isOk())
 		 ;
 
-		 mockMvc.perform(get("/rest/Book/270"))
+		 mockMvc.perform(get("/rest/Book/276"))
 		 .andExpect(status().isOk())
 		 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 		 .andExpect(jsonPath("$", hasSize(1)))
@@ -89,7 +89,7 @@ public class RestBookControllerTest {
 		 .andExpect(jsonPath("$[0].authorName", is("XXX")))
 		 ;		 
 		 
-		 mockMvc.perform(put("/rest/Book/270/GodFather/Mario P"))
+		 mockMvc.perform(put("/rest/Book/276/GodFather/Mario P"))
 		 .andExpect(status().isOk())
 		 ;
 		 
@@ -102,6 +102,16 @@ public class RestBookControllerTest {
 		 ;
 	}	
 	
+	
+	@Test
+	public void testSearchBookByName() throws Exception {
+		 mockMvc.perform(get("/rest/Book/Search/BookName/GodFather"))
+		 .andExpect(status().isOk())
+		 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+		 .andExpect(jsonPath("$..bookName",hasItems("GodFather")))
+		 .andExpect(jsonPath("$", hasSize(greaterThanOrEqualTo(1))))
+		 ;
+	}	
 
 	
 }

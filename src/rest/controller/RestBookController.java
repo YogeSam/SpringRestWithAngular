@@ -74,6 +74,18 @@ public class RestBookController {
 		b.deleteBookById(bookid);
 	}
 	
+	@RequestMapping(value = "/Book/Search/BookName/{bookname}", method = RequestMethod.GET)
+	public ArrayList<BookConcrete> searchBooksByName( @PathVariable("bookname") String bookname){
+		ArrayList<BookConcrete> list = null;
+		IBookList b = getBookListService();
+		list = b.findBookByName(bookname);
+		
+		//Search in author list
+		list.addAll(b.findBookByAuthor(bookname));
+		
+		return list;
+	}	
+	
 	private IBookList getBookListService(){
 		HttpSession session = request.getSession();
 		IBookList b = (IBookList)session.getAttribute("Book");
