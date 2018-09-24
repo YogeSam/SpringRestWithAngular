@@ -44,7 +44,7 @@ public class RestBookControllerTest {
 	
 	@Test
 	public void testBookListForId() throws Exception {
-		 mockMvc.perform(get("/Book/270"))
+		 mockMvc.perform(get("/rest/Book/270"))
 		 .andExpect(status().isOk())
 		 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 		 .andExpect(jsonPath("$", hasSize(1)))
@@ -55,7 +55,7 @@ public class RestBookControllerTest {
 	
 	@Test
 	public void testBookList() throws Exception {
-		 mockMvc.perform(get("/Book"))
+		 mockMvc.perform(get("/rest/Book"))
 		 .andExpect(status().isOk())
 		 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 		 .andExpect(jsonPath("$..bookName",hasItems("GodFather")))
@@ -65,11 +65,11 @@ public class RestBookControllerTest {
 	
 	@Test
 	public void testBookAdd() throws Exception {
-		 mockMvc.perform(post("/Book/XXX1/YYYY1"))
+		 mockMvc.perform(post("/rest/Book/XXX1/YYYY1"))
 		 .andExpect(status().isOk())
 		 ;
 		 
-		 mockMvc.perform(post("/Book").contentType(MediaType.APPLICATION_JSON).content("{\"bookId\":\"0\",\"bookName\":\"Eye of Tiger\",\"authorName\":\"Surma Bhopali\"}"))
+		 mockMvc.perform(post("/rest/Book").contentType(MediaType.APPLICATION_JSON).content("{\"bookId\":\"0\",\"bookName\":\"Eye of Tiger\",\"authorName\":\"Surma Bhopali\"}"))
 		 .andExpect(status().isOk())
 		 ;
 		 
@@ -77,11 +77,11 @@ public class RestBookControllerTest {
 	
 	@Test
 	public void testBookUpdate() throws Exception {
-		 mockMvc.perform(put("/Book/270/1GodFather/XXX"))
+		 mockMvc.perform(put("/rest/Book/270/1GodFather/XXX"))
 		 .andExpect(status().isOk())
 		 ;
 
-		 mockMvc.perform(get("/Book/270"))
+		 mockMvc.perform(get("/rest/Book/270"))
 		 .andExpect(status().isOk())
 		 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 		 .andExpect(jsonPath("$", hasSize(1)))
@@ -89,7 +89,7 @@ public class RestBookControllerTest {
 		 .andExpect(jsonPath("$[0].authorName", is("XXX")))
 		 ;		 
 		 
-		 mockMvc.perform(put("/Book/270/GodFather/Mario P"))
+		 mockMvc.perform(put("/rest/Book/270/GodFather/Mario P"))
 		 .andExpect(status().isOk())
 		 ;
 		 
@@ -97,7 +97,7 @@ public class RestBookControllerTest {
 
 	@Test
 	public void testBookDelete() throws Exception {
-		 mockMvc.perform(delete("/Book/1"))
+		 mockMvc.perform(delete("/rest/Book/1"))
 		 .andExpect(status().isOk())
 		 ;
 	}	

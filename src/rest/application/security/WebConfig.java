@@ -9,18 +9,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "rest.controller", "rest.application.security" })
+@ComponentScan(basePackages = { "rest.controller", "rest.application.security", "view.controller" })
 public class WebConfig extends WebMvcConfigurerAdapter {
    
-	/*
 	@Override
    public void configureViewResolvers(ViewResolverRegistry registry) {
-      registry.jsp().prefix("/WEB-INF/").suffix(".jsp");
+      registry.jsp().prefix("/singlepage/").suffix(".jsp");
    }
-   */
 
    @Override
    public void addViewControllers(ViewControllerRegistry registry) {
-      registry.addViewController("/login").setViewName("login.jsp");
+	   registry.addViewController("/login").setViewName("../login");
    }
 }

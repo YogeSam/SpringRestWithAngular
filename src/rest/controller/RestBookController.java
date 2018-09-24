@@ -21,7 +21,7 @@ import model.BookConcrete;
 import service.IBookList;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/rest")
 public class RestBookController {
 	@Autowired
 	private HttpServletRequest request;

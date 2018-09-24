@@ -8,13 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	String bookid = request.getParameter("bookid");
-	String bookname = request.getParameter("bookname");
-	String authorname = request.getParameter("authorname");
-%>
-
-<div class="container"  ng-controller='UpdateBookController as ctrl'  ng-init="init('<%=bookid%>','<%=bookname%>','<%=authorname%>')">
+<div class="container"  ng-controller='UpdateBookController as ctrl'  ng-init="init('<c:out value="${param.bookid}" />','<c:out value="${param.bookname}" />','<c:out value="${param.authorname}" />')">
   <h2>Enter New Book Info</h2>
   <form class="form-horizontal">
     <div class="form-group">
