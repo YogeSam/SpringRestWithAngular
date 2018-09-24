@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
           .formLogin()
           .loginPage("/login.jsp")
           .loginProcessingUrl("/signin")
-          .defaultSuccessUrl("/singlepage/book.jsp")
+          .defaultSuccessUrl("/view/Book")
           .failureUrl("/login.jsp?error=true")
           .and()
           .logout().logoutSuccessUrl("/login.jsp")

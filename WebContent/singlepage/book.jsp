@@ -47,10 +47,10 @@
 
 </div>
 
-<script src="./script/bookservice.js"></script>
-<script src="./script/book.js"></script>
-<script src="./script/bookadd.js"></script>
-<script src="./script/bookupdate.js"></script>
+<script src="/singlepage/script/bookservice.js" ></script>
+<script src="/singlepage/script/book.js" ></script>
+<script src="/singlepage/script/bookadd.js" ></script>
+<script src="/singlepage/script/bookupdate.js" ></script>
 
 
 

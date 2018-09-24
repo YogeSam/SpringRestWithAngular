@@ -17,7 +17,7 @@
           };          
           
           self.addBook = function() {
-        		  self.url = "./bookAdd.jsp";
+        	  self.url = "/view/Book/Add";
           };
 
           self.updateBook = function(bookid) {
@@ -29,7 +29,7 @@
         		  }
         	  }
         	  if(selbook != null){
-        		  self.url = "./bookUpdate.jsp?bookid=" + selbook.bookId + "&bookname=" + selbook.bookName + "&authorname=" + selbook.authorName;
+        		  self.url = "/view/Book/Update?bookid=" + selbook.bookId + "&bookname=" + selbook.bookName + "&authorname=" + selbook.authorName; 
         	  }
           };
           
