@@ -1,5 +1,7 @@
 package view.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -10,7 +12,11 @@ public class BookViewController {
 	
 	@RequestMapping(value = "/Book")
 	public ModelAndView  listView(){
-		return new ModelAndView("book"); 
+		ModelAndView m = new ModelAndView("book");
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	    String name = user.getUsername(); //get logged in username
+	    m.addObject("username", name);
+		return m; 
 	}
 	
 	@RequestMapping(value = "/Book/Add")
