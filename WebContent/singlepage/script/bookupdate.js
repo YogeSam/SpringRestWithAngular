@@ -19,14 +19,14 @@
           self.updateBook = function() {
     		  BookServiceOp.updateBook(self.book.bookId, self.book.bookName, self.book.authorName).then(function(response) {
     			  bootbox.alert("Success!!!");
-    			  self.parentscope.resetUrl();
+    			  self.parentscope.closemodal();
     			  self.parentscope.loadBooks();
               }, function(error){
             	  bootbox.alert(error.statusText);
               });        	  
           };
           self.close = function() {
-        	  self.parentscope.resetUrl();
+        	  self.parentscope.closemodal();
           };
       });
  
