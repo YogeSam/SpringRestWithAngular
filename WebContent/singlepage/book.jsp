@@ -14,6 +14,9 @@
  
    
 <div class="panel-heading">List Books</div>
+<div class="alert alert-info">
+  <strong>Welcome</strong> <c:out value="${username}" /> !!!
+</div>
 <div class="panel-body" >
  <div class="search-container">
       <input ng-focus="ctrl1.selectSearch($event)"   ng-change="ctrl1.searchBook()" ng-model="ctrl1.searchbookname" type="text" placeholder="Search Book or Author.." id="search" name="search">
