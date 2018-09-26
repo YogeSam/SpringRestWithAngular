@@ -3,7 +3,7 @@
  */
 
  angular.module('myApp', ['ui.bootstrap','BookService'])
- 	.controller('BookController', function($scope, $modal, BookServiceOp) {
+ 	.controller('BookController', function($scope, $uibModal, BookServiceOp) {
           var self = this;
           self.url = "";
           self.searchbookname = "";
@@ -36,10 +36,8 @@
           };          
           
           self.addBook = function() {
-        	  self.modalInstance = $modal.open({
+        	  self.modalInstance = $uibModal.open({
         		  templateUrl: '/view/Book/Add',
-        		  controller: 'AddBookController',
-        		  controllerAs: 'ctrl',
         		  scope: $scope,
         		  });
         	  
@@ -55,7 +53,7 @@
         		  }
         	  }
         	  if(selbook != null){
-        		  self.modalInstance = $modal.open({
+        		  self.modalInstance = $uibModal.open({
             		  templateUrl: '/view/Book/Update?bookid=' + selbook.bookId + '&bookname=' + selbook.bookName + '&authorname=' + selbook.authorName,
             		  controller: 'UpdateBookController',
             		  controllerAs: 'ctrl',
@@ -79,8 +77,7 @@
 
           
           self.resetUrl = function() {
-        	  //self.url = "";
-        	  self.modalInstance.dismiss('cancel');
+        	  self.url = "";
           };
           
           self.closemodal = function(){

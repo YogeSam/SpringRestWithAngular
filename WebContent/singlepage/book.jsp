@@ -13,8 +13,6 @@
 
 
 <div class="container" ng-controller='BookController as ctrl1'>
- <div class="panel panel-default">
- 
  <div class="slide-animate-container">
     <div class="slide-animate" ng-include="ctrl1.url"></div>
 </div>
@@ -23,14 +21,15 @@
 <div class="alert alert-info">
   <strong>Welcome</strong> <c:out value="${username}" /> !!!
 </div>
-<div class="panel-body" >
  <div class="search-container">
       <input ng-focus="ctrl1.selectSearch($event)"   ng-change="ctrl1.searchBook()" ng-model="ctrl1.searchbookname" type="text" placeholder="Search Book or Author.." id="search" name="search">
       <a href="" ng-click="ctrl1.searchBook()" ><span class="glyphicon glyphicon-search" data-toggle="tooltip" title="Search"></span></a>
       
   </div>
-
-	
+  
+ <div class="panel panel-default">
+ 
+<div class="panel-body" >
 	<table class="table table-striped table-hover">
 	<thead>
 	    <tr>
