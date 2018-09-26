@@ -12,19 +12,19 @@
   <h2>Enter New Book Info</h2>
   <form class="form-horizontal">
     <div class="form-group">
-      <label class="control-label col-sm-2" for="bookname">Book name</label>
-      <div class="col-sm-10">
+      <label class="control-label col-xs-2" for="bookname">Book name</label>
+      <div class="col-xs-4">
         <input type="text" class="form-control" id="bookname" placeholder="Book name" name="bookname"  ng-model="ctrl.book.bookName">
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="authorname">Author name</label>
-      <div class="col-sm-10">          
+      <label class="control-label col-xs-2" for="authorname">Author name</label>
+      <div class="col-xs-4">          
         <input type="text" class="form-control" id="authorname" placeholder="Author name" name="authorname" ng-model="ctrl.book.authorName">
       </div>
     </div>
     <div class="form-group">        
-      <div class="col-sm-offset-2 col-sm-10">
+      <div class="col-sm-offset-2 col-xs-4">
         <button class="btn btn-default btn-primary" ng-click="ctrl.updateBook()">Submit</button>
         <button class="btn btn-default btn-primary" ng-click="ctrl.close()">Cancel</button>
       </div>

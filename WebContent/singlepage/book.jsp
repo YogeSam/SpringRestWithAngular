@@ -9,11 +9,17 @@
 <title>List of Books</title>
 </head>
 <body>
+
+
+
 <div class="container" ng-controller='BookController as ctrl1'>
  <div class="panel panel-default">
  
-   
-<div class="panel-heading">List Books</div>
+ <div class="slide-animate-container">
+    <div class="slide-animate" ng-include="ctrl1.url"></div>
+</div>
+ 
+
 <div class="alert alert-info">
   <strong>Welcome</strong> <c:out value="${username}" /> !!!
 </div>
@@ -23,9 +29,6 @@
       <a href="" ng-click="ctrl1.searchBook()" ><span class="glyphicon glyphicon-search" data-toggle="tooltip" title="Search"></span></a>
       
   </div>
-<div class="slide-animate-container">
-    <div class="slide-animate" ng-include="ctrl1.url"></div>
-</div>
 
 	
 	<table class="table table-striped table-hover">

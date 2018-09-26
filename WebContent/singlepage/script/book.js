@@ -2,8 +2,8 @@
  * 
  */
 
- angular.module('myApp', ['BookService'])
- 	.controller('BookController', function(BookServiceOp) {
+ angular.module('myApp', ['ui.bootstrap','BookService'])
+ 	.controller('BookController', function($scope, $modal, BookServiceOp) {
           var self = this;
           self.url = "";
           self.searchbookname = "";
@@ -36,7 +36,14 @@
           };          
           
           self.addBook = function() {
-        	  self.url = "/view/Book/Add";
+        	  self.modalInstance = $modal.open({
+        		  templateUrl: '/view/Book/Add',
+        		  controller: 'AddBookController',
+        		  controllerAs: 'ctrl',
+        		  scope: $scope,
+        		  });
+        	  
+        	  //self.url = "/view/Book/Add";
           };
 
           self.updateBook = function(bookid) {
@@ -48,7 +55,14 @@
         		  }
         	  }
         	  if(selbook != null){
-        		  self.url = "/view/Book/Update?bookid=" + selbook.bookId + "&bookname=" + selbook.bookName + "&authorname=" + selbook.authorName; 
+        		  self.modalInstance = $modal.open({
+            		  templateUrl: '/view/Book/Update?bookid=' + selbook.bookId + '&bookname=' + selbook.bookName + '&authorname=' + selbook.authorName,
+            		  controller: 'UpdateBookController',
+            		  controllerAs: 'ctrl',
+            		  scope: $scope,
+            		  });
+        		  
+        		  //self.url = "/view/Book/Update?bookid=" + selbook.bookId + "&bookname=" + selbook.bookName + "&authorname=" + selbook.authorName; 
         	  }
           };
           
@@ -65,8 +79,13 @@
 
           
           self.resetUrl = function() {
-        	  self.url = "";
+        	  //self.url = "";
+        	  self.modalInstance.dismiss('cancel');
           };
+          
+          self.closemodal = function(){
+        	  self.modalInstance.dismiss('cancel');
+          }
           
           self.loadBooks();
           
