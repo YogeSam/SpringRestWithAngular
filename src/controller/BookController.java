@@ -18,6 +18,7 @@ import factory.BookImplFactory;
 import factory.BookImplFactory.BookImplStyle;
 import model.BookConcrete;
 import service.BookDao;
+import service.DuplicateBookException;
 import service.IBookList;
 import uri.IBookURI;
 
@@ -84,7 +85,7 @@ public class BookController extends HttpServlet {
 		session.setAttribute("Book",b);
 	}
 
-	private void saveBook(HttpServletRequest request){
+	private void saveBook(HttpServletRequest request) throws DuplicateBookException{
 		HttpSession session = request.getSession();
 		IBookList b = (IBookList)session.getAttribute("Book");
 		

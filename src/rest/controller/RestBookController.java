@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import factory.BookImplFactory;
 import factory.BookImplFactory.BookImplStyle;
 import model.BookConcrete;
+import service.DuplicateBookException;
 import service.IBookList;
 
 @RestController
@@ -43,7 +44,7 @@ public class RestBookController {
 	}
 	
 	@RequestMapping(value = "/Book/{bookname}/{author}", method = RequestMethod.POST)
-	public void addBook(@PathVariable("bookname") String bookName, @PathVariable("author") String authorName){
+	public void addBook(@PathVariable("bookname") String bookName, @PathVariable("author") String authorName) throws DuplicateBookException{
 		//int d = 6 / 0;
 		IBookList b = getBookListService();
 		BookConcrete book = new BookConcrete();
@@ -56,7 +57,7 @@ public class RestBookController {
 
 	//@RequestMapping(value = "/Book", method = RequestMethod.POST)
 	@PostMapping(path = "/Book")
-	public void addBook(@RequestBody BookConcrete book){
+	public void addBook(@RequestBody BookConcrete book)throws DuplicateBookException{
 		//int d = 6 / 0;
 		IBookList b = getBookListService();
 		b.addBookToList(book);
