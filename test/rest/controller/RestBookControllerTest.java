@@ -21,6 +21,8 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.util.Random;
+
 import org.hamcrest.core.AnyOf;
 
 //Spring Rest Annotations
@@ -44,12 +46,12 @@ public class RestBookControllerTest {
 	
 	@Test
 	public void testBookListForId() throws Exception {
-		 mockMvc.perform(get("/rest/Book/276"))
+		 mockMvc.perform(get("/rest/Book/279"))
 		 .andExpect(status().isOk())
 		 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 		 .andExpect(jsonPath("$", hasSize(1)))
-		 .andExpect(jsonPath("$[0].bookName",anyOf(containsString("GodFather"))))
-		 .andExpect(jsonPath("$[0].authorName", is("Mario P")))
+		 .andExpect(jsonPath("$[0].bookName",anyOf(containsString("Principles"))))
+		 .andExpect(jsonPath("$[0].authorName", is("Ray dalio")))
 		 ;
 	}
 	
@@ -65,12 +67,16 @@ public class RestBookControllerTest {
 	
 	@Test
 	public void testBookAdd() throws Exception {
-		 mockMvc.perform(post("/rest/Book/XXX1/YYYY1"))
+		 String bookName = "XXX1" + Math.random(); 
+		
+		 
+		 
+		 mockMvc.perform(post("/rest/Book/" + bookName + "/YYYY1"))
 		 .andExpect(status().isOk())
 		 ;
-		 
-		 mockMvc.perform(post("/rest/Book").contentType(MediaType.APPLICATION_JSON).content("{\"bookId\":\"0\",\"bookName\":\"Eye of Tiger\",\"authorName\":\"Surma Bhopali\"}"))
-		 .andExpect(status().isOk())
+
+		 mockMvc.perform(post("/rest/Book").contentType(MediaType.APPLICATION_JSON).content("{\"bookId\":\"0\",\"bookName\":\"" + bookName + "\",\"authorName\":\"Surma Bhopali\"}"))
+		 .andExpect(status().isBadRequest())
 		 ;
 		 
 	}
@@ -88,10 +94,6 @@ public class RestBookControllerTest {
 		 .andExpect(jsonPath("$[0].bookName", is("1GodFather")))
 		 .andExpect(jsonPath("$[0].authorName", is("XXX")))
 		 ;		 
-		 
-		 mockMvc.perform(put("/rest/Book/276/GodFather/Mario P"))
-		 .andExpect(status().isOk())
-		 ;
 		 
 	}
 

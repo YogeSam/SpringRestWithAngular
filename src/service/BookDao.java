@@ -84,10 +84,10 @@ public class BookDao implements IBookList{
 	}
 
 	@Override
-	public BookConcrete addBookToList(BookConcrete b) {
+	public BookConcrete addBookToList(BookConcrete b) throws DuplicateBookException {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		if(findBookById(b.getBookId()).size() == 1)
-			return b;
+		if(findBookByName(b.getBookName()).size() >= 1)
+			throw new DuplicateBookException(b.getBookName() + " already present.");
 		
 		session.beginTransaction();
 		session.save(b);

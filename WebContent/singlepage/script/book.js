@@ -31,7 +31,7 @@
         	  BookServiceOp.getBooks().then(function(response) {
                   self.books = response.data;
               }, function(error){
-            	  bootbox.alert(error.statusText);
+            	  bootbox.alert(error.statusText + ". " + error.data.message);
               });
           };          
           
@@ -70,7 +70,7 @@
         			  bootbox.alert("Success!!!");
         			  self.loadBooks();
                   }, function(error){
-                	  bootbox.alert(error.statusText);
+                	  bootbox.alert(error.statusText + ". " + error.data.message);
                   });
         	  }
           };

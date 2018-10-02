@@ -16,6 +16,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import controller.BookController;
+import service.DuplicateBookException;
 
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler 
@@ -38,6 +39,24 @@ public class RestResponseEntityExceptionHandler
         oTable.put("name",ex.getClass().getName());
         return oTable;
     }
+    
+    @ExceptionHandler(value = { DuplicateBookException.class })
+    @ResponseStatus(value=HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    protected Hashtable<String,String> handleConflict(
+    		DuplicateBookException ex, WebRequest request) {
+    	StringWriter sw = new StringWriter();
+    	ex.printStackTrace(new PrintWriter(sw));    	
+    	logger.error(sw);
+    	Hashtable<String,String> oTable = new Hashtable<String,String>();
+        String bodyOfResponse = ex.getMessage();
+        oTable.put("message",bodyOfResponse);
+        oTable.put("error","1");
+        oTable.put("trace",ex.getMessage());
+        oTable.put("name",ex.getClass().getName());
+        return oTable;
+    }
+    
     
  
 }	

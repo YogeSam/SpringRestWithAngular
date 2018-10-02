@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import factory.BookImplFactory;
 import factory.BookImplFactory.BookImplStyle;
 import model.BookConcrete;
@@ -73,6 +72,17 @@ public class BookDaoTest {
 	@Test
 	public void tesBookCount() {
 		assertTrue(b.bookCount() >=1);
+	}
+	
+	@Test
+	public void testDuplicateBook() {
+		try{
+			b.addBookToList(book);
+			fail("Expected an DuplicateBookException to be thrown");
+		}catch(DuplicateBookException ex){
+			assertTrue(ex.getMessage().indexOf("present")>=0);
+		}
+		
 	}
 	
 

@@ -19,7 +19,7 @@
         			  //self.parentscope.resetUrl();
         			  self.parentscope.loadBooks();
                   }, function(error){
-                	  bootbox.alert(error.statusText);
+                	  bootbox.alert(error.statusText + ". " + error.data.message);
                   });
         	  }
           };
