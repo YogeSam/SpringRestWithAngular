@@ -11,17 +11,19 @@
 
 <div class="container"  ng-controller='AddBookController as ctrl'>
   <h2>Enter New Book Info</h2>
-  <form class="form-horizontal">
+  <form name="myForm" class="form-horizontal" >
     <div class="form-group">
       <label class="control-label col-xs-2" for="bookname">Book name</label>
       <div class="col-xs-4">
-        <input type="text" class="form-control" id="bookname" placeholder="Book name" name="bookname"  ng-model="ctrl.book.bookName">
+        <input type="text" class="form-control" id="bookname" placeholder="Book name" name="bookname"  ng-model="ctrl.book.bookName" required>
+        </br><span ng-show="myForm.bookname.$touched && myForm.bookname.$invalid">Book name is required.</span>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-xs-2" for="authorname">Author name</label>
       <div class="col-xs-4">          
-        <input type="text" class="form-control" id="authorname" placeholder="Author name" name="authorname" ng-model="ctrl.book.authorName">
+        <input type="text" class="form-control" id="authorname" placeholder="Author name" name="authorname" ng-model="ctrl.book.authorName" required>
+        </br><span ng-show="myForm.authorname.$touched && myForm.authorname.$invalid">Author name is required.</span>
       </div>
     </div>
     <div class="form-group">        
