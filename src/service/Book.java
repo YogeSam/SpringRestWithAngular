@@ -116,6 +116,12 @@ public class Book implements IBookList{
 		return bookList.size();
 	}
 
+	@Override
+	public BookConcrete updateBook(BookConcrete b) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 	
 }

@@ -11,6 +11,7 @@ public interface IBookList {
 	public ArrayList<BookConcrete> findBookByAuthor(String authorName);
 	public ArrayList<BookConcrete> deleteBookById(int id);
 	public BookConcrete updateBook(int id, String bookName, String authorName);
+	public BookConcrete updateBook(BookConcrete b);
 	public BookConcrete addBookToList(BookConcrete b) throws DuplicateBookException;
 	public long bookCount();
 	

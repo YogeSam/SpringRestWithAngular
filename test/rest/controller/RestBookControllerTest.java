@@ -10,20 +10,15 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
 
 
 import rest.application.ApplicationInitializer;
 import rest.application.security.WebConfig;
 
 import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import java.util.Random;
-
-import org.hamcrest.core.AnyOf;
 
 //Spring Rest Annotations
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -50,8 +45,8 @@ public class RestBookControllerTest {
 		 .andExpect(status().isOk())
 		 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 		 .andExpect(jsonPath("$", hasSize(1)))
-		 .andExpect(jsonPath("$[0].bookName",anyOf(containsString("Principles"))))
-		 .andExpect(jsonPath("$[0].authorName", is("Ray dalio")))
+		 .andExpect(jsonPath("$[0].bookName",anyOf(containsString("2GodFather"))))
+		 .andExpect(jsonPath("$[0].authorName", is("Surma Bhopali")))
 		 ;
 	}
 	
@@ -75,7 +70,7 @@ public class RestBookControllerTest {
 		 .andExpect(status().isOk())
 		 ;
 
-		 mockMvc.perform(post("/rest/Book").contentType(MediaType.APPLICATION_JSON).content("{\"bookId\":\"0\",\"bookName\":\"" + bookName + "\",\"authorName\":\"Surma Bhopali\"}"))
+		 mockMvc.perform(post("/rest/Book").contentType(MediaType.APPLICATION_JSON).content("{\"bookId\":\"0\",\"bookName\":\"" + bookName + "\",\"authorName\":\"Surma Bhopali\",\"publisheddate\":\"2001-01-01\"}"))
 		 .andExpect(status().isBadRequest())
 		 ;
 		 
@@ -83,17 +78,28 @@ public class RestBookControllerTest {
 	
 	@Test
 	public void testBookUpdate() throws Exception {
-		 mockMvc.perform(put("/rest/Book/276/1GodFather/XXX"))
+		 mockMvc.perform(put("/rest/Book/279/1GodFather/XXX"))
 		 .andExpect(status().isOk())
 		 ;
 
-		 mockMvc.perform(get("/rest/Book/276"))
+		 mockMvc.perform(get("/rest/Book/279"))
 		 .andExpect(status().isOk())
 		 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 		 .andExpect(jsonPath("$", hasSize(1)))
 		 .andExpect(jsonPath("$[0].bookName", is("1GodFather")))
 		 .andExpect(jsonPath("$[0].authorName", is("XXX")))
 		 ;		 
+
+		 String url = "{\"bookId\":\"279\",\"bookName\":\"2GodFather\",\"authorName\":\"Surma Bhopali\",\"publisheddate\":\"2010-11-11\"}";
+		 mockMvc.perform(put("/rest/Book").contentType(MediaType.APPLICATION_JSON).content(url))
+		 .andExpect(status().isOk());
+
+		 mockMvc.perform(get("/rest/Book/279"))
+		 .andExpect(status().isOk())
+		 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+		 .andExpect(jsonPath("$", hasSize(1)))
+		 .andExpect(jsonPath("$[0].bookName", is("2GodFather")))
+		 .andExpect(jsonPath("$[0].publisheddate", is("2010-11-11")));
 		 
 	}
 

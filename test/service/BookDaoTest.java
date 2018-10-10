@@ -2,6 +2,8 @@ package service;
 
 import static org.junit.Assert.*;
 
+import java.text.SimpleDateFormat;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,8 +23,10 @@ public class BookDaoTest {
 	@Before
 	public void setUp() throws Exception {
 		book.setBookId(1);
-		book.setBookName("Silence of Lambs");
+		String bookname = "Silence of Lambs" + Math.random(); 
+		book.setBookName(bookname);
 		book.setAuthorName("Thomas Harris");
+		book.setPublishedDate(new SimpleDateFormat("yyyy-MM-dd").parse("2001-01-01"));
 		b = (BookDao) BookImplFactory.createBookImplementation(BookImplStyle.DAO);
 		b.addBookToList(book);
 	}
@@ -37,7 +41,7 @@ public class BookDaoTest {
 	@Test
 	public void testFindBookById() {
 		
-		assertTrue(b.findBookByAuthor(book.getAuthorName()).size()==1);
+		assertTrue(b.findBookByAuthor(book.getAuthorName()).size()>=1);
 		assertTrue(b.findBookById(-1).size()>=1);
 		
 	}
@@ -45,14 +49,14 @@ public class BookDaoTest {
 	@Test
 	public void testFindBookByName() {
 		assertTrue(b.findBookByName(book.getBookName()).size()==1);
-		assertTrue(b.findBookByName("Silence").size()==1);
+		assertTrue(b.findBookByName("Silence").size()>=1);
 		assertTrue(b.findBookByName("Wrong Name").size()==0);
 	}
 
 	@Test
 	public void testFindBookByAuthor() {
-		assertTrue(b.findBookByAuthor(book.getAuthorName()).size()==1);
-		assertTrue(b.findBookByAuthor("Thomas").size()==1);
+		assertTrue(b.findBookByAuthor(book.getAuthorName()).size()>=1);
+		assertTrue(b.findBookByAuthor("Thomas").size()>=1);
 		assertTrue(b.findBookByAuthor("Wrong Name").size()==0);
 	}
 
@@ -65,8 +69,10 @@ public class BookDaoTest {
 	public void testUpdateBook() {
 		assertTrue(b.findBookById(book.getBookId()).size()==1);
 		b.updateBook(book.getBookId(), "Silence of Lambs1", "Thomas Harris1");
-		assertTrue(b.findBookByAuthor("Thomas Harris1").size()==1);
-		assertTrue(b.findBookByName("Silence of Lambs1").size()==1);
+		assertTrue(b.findBookByAuthor("Thomas Harris1").size()>=1);
+		assertTrue(b.findBookByName("Silence of Lambs1").size()>=1);
+		b.updateBook(book);
+		assertTrue(b.findBookByName(book.getBookName()).size()>=1);
 	}
 	
 	@Test
@@ -85,5 +91,12 @@ public class BookDaoTest {
 		
 	}
 	
-
+	
+	@Test
+	public void testBookContent() {
+		BookConcrete b1 = b.findBookById(book.getBookId()).get(0);
+		assertTrue(b1.getBookName().equals(book.getBookName()));
+		assertTrue(b1.getAuthorName().equals(book.getAuthorName()));
+		assertTrue(b1.getPublishedDate().compareTo(book.getPublishedDate()) == 0);
+	}
 }

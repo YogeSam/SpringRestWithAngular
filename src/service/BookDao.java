@@ -105,4 +105,14 @@ public class BookDao implements IBookList{
 		return count;
 	}
 
+	@Override
+	public BookConcrete updateBook(BookConcrete b) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		session.update(b);
+        session.getTransaction().commit();
+		HibernateUtil.shutdown();
+		return b;
+	}
+
 }

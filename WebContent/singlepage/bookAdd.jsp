@@ -26,6 +26,13 @@
         </br><span ng-show="myForm.authorname.$touched && myForm.authorname.$invalid">Author name is required.</span>
       </div>
     </div>
+    <div class="form-group">
+      <label class="control-label col-xs-2" for="publisheddate">Published Date</label>
+      <div class="col-xs-4">          
+        <input type="date" class="form-control" id="publisheddate" placeholder="yyyy-MM-dd" name="publisheddate" ng-model="ctrl.book.publisheddate" required>
+        </br><span ng-show="myForm.publisheddate.$touched && myForm.publisheddate.$invalid">Published Date is required.</span>
+      </div>
+    </div>
     <div class="form-group">        
       <div class="col-sm-offset-2 col-xs-4">
         <button class="btn btn-default btn-primary" ng-click="ctrl.addBook()">Submit</button>

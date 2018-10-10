@@ -3,7 +3,7 @@
  */
 
  angular.module('myApp', ['ui.bootstrap','BookService'])
- 	.controller('BookController', function($scope, $uibModal, BookServiceOp) {
+ 	.controller('BookController', function($scope, $filter, $uibModal, BookServiceOp) {
           var self = this;
           self.url = "";
           self.searchbookname = "";
@@ -53,8 +53,9 @@
         		  }
         	  }
         	  if(selbook != null){
+        		  selbook.publisheddate =  $filter('date')(selbook.publisheddate, "yyyy-MM-dd"); 
         		  self.modalInstance = $uibModal.open({
-            		  templateUrl: '/view/Book/Update?bookid=' + selbook.bookId + '&bookname=' + selbook.bookName + '&authorname=' + selbook.authorName,
+            		  templateUrl: '/view/Book/Update?bookid=' + selbook.bookId + '&bookname=' + window.encodeURIComponent(selbook.bookName) + '&authorname=' + window.encodeURIComponent(selbook.authorName) + '&publisheddate=' + selbook.publisheddate,
             		  controller: 'UpdateBookController',
             		  controllerAs: 'ctrl',
             		  scope: $scope,

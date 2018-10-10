@@ -36,6 +36,7 @@
 	      <th scope="col"></th>
 	      <th scope="col">Name</th>
 	      <th scope="col">Author</th>
+	      <th scope="col">Published</th>
 	      <th scope="col"></th>
 	    </tr>
 	</thead>	
@@ -43,6 +44,7 @@
 	    <td ng-click="ctrl1.updateBook(book.bookId);"><a href=""  ><span class="glyphicon glyphicon-envelope" data-toggle="tooltip" title="Update"></span></a></td>
     	<td>{{ book.bookName }}</td>
     	<td>{{ book.authorName }}</td>
+    	<td>{{ book.publishedDate  | date:'MM/dd/yyyy' }}</td>
     	<td ng-click="ctrl1.deleteBook(book.bookId);"><a href=""><span class="glyphicon glyphicon-remove-circle" data-toggle="tooltip" title="Update"></span></a></td>
   	</tr>
 	</table>
