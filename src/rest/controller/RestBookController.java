@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import factory.BookImplFactory;
@@ -68,6 +69,12 @@ public class RestBookController {
 		IBookList b = getBookListService();
 		b.updateBook(bookid, bookname, author);
 	}	
+	
+	@PutMapping(path = "/Book")
+	public void updateBook(@RequestBody BookConcrete book){
+		IBookList b = getBookListService();
+		b.updateBook(book);
+	}		
 	
 	@RequestMapping(value = "/Book/{bookid}", method = RequestMethod.DELETE)
 	public void deleteBook(@PathVariable("bookid")  int bookid){

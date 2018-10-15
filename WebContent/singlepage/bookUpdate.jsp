@@ -8,21 +8,34 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="container"  ng-controller='UpdateBookController as ctrl'  ng-init="init('<c:out value="${param.bookid}" />','<c:out value="${param.bookname}" />','<c:out value="${param.authorname}" />')">
+<%
+ String strBookId = request.getParameter("bookid");
+  String strPublishedDate = request.getParameter("publisheddate");
+%>
+<div class="container"  ng-controller='UpdateBookController as ctrl'  ng-init="init('<c:out value="${param.bookid}" />','<c:out value="${param.bookname}" />','<c:out value="${param.authorname}" />','<c:out value="${param.publisheddate}" />')">
   <h2>Enter New Book Info</h2>
-  <form class="form-horizontal">
+  <form name="myForm" class="form-horizontal">
     <div class="form-group">
       <label class="control-label col-xs-2" for="bookname">Book name</label>
       <div class="col-xs-4">
         <input type="text" class="form-control" id="bookname" placeholder="Book name" name="bookname"  ng-model="ctrl.book.bookName">
+        </br><span ng-show="myForm.bookname.$touched && myForm.bookname.$invalid">Book name is required.</span>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-xs-2" for="authorname">Author name</label>
       <div class="col-xs-4">          
         <input type="text" class="form-control" id="authorname" placeholder="Author name" name="authorname" ng-model="ctrl.book.authorName">
+        </br><span ng-show="myForm.authorname.$touched && myForm.authorname.$invalid">Author name is required.</span>
       </div>
     </div>
+   <div class="form-group">
+      <label class="control-label col-xs-2" for="publisheddate">Published Date</label>
+      <div class="col-xs-4">          
+        <input type="date" class="form-control" id="publisheddate" placeholder="yyyy-MM-dd" name="publisheddate" ng-model="ctrl.book.publisheddate" required>
+        </br><span ng-show="myForm.publisheddate.$touched && myForm.publisheddate.$invalid">Published Date is required.</span>
+      </div>
+    </div>    
     <div class="form-group">        
       <div class="col-sm-offset-2 col-xs-4">
         <button class="btn btn-default btn-primary" ng-click="ctrl.updateBook()">Submit</button>
