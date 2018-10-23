@@ -4,7 +4,7 @@
 var BookService = angular.module('BookService', [])
 BookService.factory('BookServiceOp', ['$http', function ($http) {
 
-    var urlBase = 'http://localhost:8042/rest';
+    var urlBase = '/rest';
     var BookServiceOp = {};
 
     BookServiceOp.getBooks = function () {
