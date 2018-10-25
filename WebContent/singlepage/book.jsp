@@ -24,31 +24,11 @@
  <div class="search-container">
       <input ng-focus="ctrl1.selectSearch($event)"   ng-change="ctrl1.searchBook()" ng-model="ctrl1.searchbookname" type="text" placeholder="Search Book or Author.." id="search" name="search">
       <a href="" ng-click="ctrl1.searchBook()" ><span class="glyphicon glyphicon-search" data-toggle="tooltip" title="Search"></span></a>
-      
   </div>
   
  <div class="panel panel-default">
- 
 <div class="panel-body" >
-	<table class="table table-striped table-hover">
-	<thead>
-	    <tr>
-	      <th scope="col"></th>
-	      <th scope="col">Name</th>
-	      <th scope="col">Author</th>
-	      <th scope="col">Published</th>
-	      <th scope="col"></th>
-	    </tr>
-	</thead>	
-	<tr ng-repeat="book in ctrl1.books">
-	    <td ng-click="ctrl1.updateBook(book.bookId);"><a href=""  ><span class="glyphicon glyphicon-envelope" data-toggle="tooltip" title="Update"></span></a></td>
-    	<td>{{ book.bookName }}</td>
-    	<td>{{ book.authorName }}</td>
-    	<td>{{ book.publishedDate  | date:'MM/dd/yyyy' }}</td>
-    	<td ng-click="ctrl1.deleteBook(book.bookId);"><a href=""><span class="glyphicon glyphicon-remove-circle" data-toggle="tooltip" title="Update"></span></a></td>
-  	</tr>
-	</table>
-
+	<bookgrid books="ctrl1.books" onupdate="ctrl1.updateBook(bookid)" ondelete="ctrl1.deleteBook(bookid)"></<bookgrid>
 </div>
 </div>
 
@@ -56,9 +36,12 @@
 <a href="" ng-click="ctrl1.addBook()">Click on this link to add new books. Total books added are {{ctrl1.books.length}}</a>
 </div>
 
+
+
 </div>
 
 <script src="/singlepage/script/bookservice.js" ></script>
+<script src="/singlepage/script/bookgriddirective.js" ></script>
 <script src="/singlepage/script/book.js" ></script>
 <script src="/singlepage/script/bookadd.js" ></script>
 <script src="/singlepage/script/bookupdate.js" ></script>

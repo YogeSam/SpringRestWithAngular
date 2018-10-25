@@ -2,7 +2,7 @@
  * 
  */
 
- angular.module('myApp', ['ui.bootstrap','BookService'])
+ angular.module('myApp', ['ui.bootstrap','BookService', 'BookDirective'])
  	.controller('BookController', function($scope, $filter, $uibModal, BookServiceOp) {
           var self = this;
           self.url = "";
